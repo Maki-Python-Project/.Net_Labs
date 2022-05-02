@@ -1,155 +1,100 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Console;
 
-namespace lab1
+namespace Lab2
 {
     internal class Main_class
     {
-
-
         public static void Main(string[] args)
         {
+
             //1)
-            WriteLine("---------------------------------------");
-            WriteLine("1)\n");
-            Student student = new Student();
-            WriteLine(student.ToShortString());
-            WriteLine("---------------------------------------");
+            WriteLine("1)---------------------------");
+            Person person1 = new Person();
+            Person person2 = new Person();
 
+            WriteLine($"Is person1 == person2 {person1.Equals(person2)}");
+            WriteLine($"Hash code for person1 {person1.GetHashCode()}");
+            WriteLine($"Hash code for person2 {person2.GetHashCode()}");
+            WriteLine("---------------------------");
+            
             //2)
-            WriteLine("---------------------------------------");
-            WriteLine("2)\n");
-            WriteLine(student[Education.Master]);
-            WriteLine(student[Education.Bachelor]);
-            WriteLine(student[Education.SecondEducation]);
-            WriteLine("---------------------------------------");
+            WriteLine("2)---------------------------");
+            Student student = new Student();
+            Exam[] newExams = new Exam[] { new Exam("3D modeling", 3, new DateOnly(2021, 12, 21)), new Exam("C++", 2, new DateOnly(2022, 6, 16)) };
+            Test[] newTests = new Test[] { new Test("3D modeling", true), new Test("C#", false) };
+            student.AddExams(newExams);
+            student.AddTests(newTests);
 
-            //3)
-            WriteLine("3)\n");
-            student = new Student() { Person = new Person("Volodymyr", "Lazarev", new DateOnly(2002, 10, 03)), Educate = Education.SecondEducation, Group = 201, Exams = new Exam[] { new Exam("Python", 4, new DateOnly(2021, 12, 14)), new Exam(), new Exam("English", 5, new DateOnly(2021, 12, 17)) } };
             WriteLine(student);
-            WriteLine("---------------------------------------");
-
+            WriteLine("---------------------------");
+            
+            //3)
+            WriteLine("3)---------------------------");
+            WriteLine($"Person for student\n{student.Person}");
+            WriteLine("---------------------------");
 
             //4)
-            WriteLine("---------------------------------------");
-            WriteLine("4)\n");
-            Exam[] exams = new Exam[] { new Exam("C#", 5, new DateOnly(2022, 06, 15)), new Exam("Teambuilding",3,new DateOnly(2021,12,22)) };
-            student.AddExams(exams);
-            WriteLine(student);
-            WriteLine("---------------------------------------");
-
+            WriteLine("4)---------------------------");
+            Student studentCopy = (Student)student.DeepCopy();
+            Test[] tests = new Test[] { new Test("Philosofy", true) };
+            student.AddTests(tests);
+            WriteLine($"Original object\n{student}");
+            WriteLine($"Copy object\n{studentCopy}");
+            WriteLine("-----------------------------");
 
             //5)
-            WriteLine("---------------------------------------");
-            WriteLine("5)\n");
-            WriteLine("Enter nRows and nColumns. Split this numbers symbols ,;");
-            string str = Console.ReadLine();
-
-            string[] numbers = str.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
-            int nRows = Convert.ToInt32(numbers[0]);
-            int nColumns = Convert.ToInt32(numbers[1]);
-
-
-            Exam[] OneMasiv = new Exam[nRows * nColumns];
-            for (int i = 0; i < nRows * nColumns; i++) OneMasiv[i] = new Exam();
-
-            Exam[][] TwoMasiv = new Exam[nRows][];
-            for(int i = 0; i < nRows; i++)
+            WriteLine("5)---------------------------");
+            try
             {
-                TwoMasiv[i] = new Exam[nColumns];
-                for(int j = 0; j < nColumns; j++)
-                {
-                    TwoMasiv[i][j] = new Exam();
-                }
+                Student student2 = new Student() { Group = 700 };
             }
-
-            int start, end;
-            int count = 0;
-            int sum = (nRows / 2) * (nRows - 1);
-
-            if(sum < nRows * nColumns)
+            catch(Exception e)
             {
-                Exam[][] JaggedMasiv = new Exam[nRows + 1][];
-                
-                for(int i = 0; i<=nRows; i++)
-                {   ++count;
-                    JaggedMasiv[i] = new Exam[count];
-                    for(int j = 0; j < count; j++)
-                    {
-                        JaggedMasiv[i][j] = new Exam();
-                    }
-                }
-            
-                start = Environment.TickCount;
-                for (int i = 0; i <= JaggedMasiv.Length-1; i++)
-                {
-             
-                    for (int j = 0; j < JaggedMasiv[i].Length; j++)
-                    {
-                        JaggedMasiv[i][j].Grade = 5;
-
-                    }
-
-                }
-                end = Environment.TickCount;
-                WriteLine($"Execution time for jagged masiv: {end - start} ms");
-                
+                WriteLine(e.Message);
             }
+            WriteLine("-----------------------------");
 
-            else
+            //6)
+            WriteLine("6)---------------------------");
+            foreach(object obj in student.AllGoodExams(3))
             {
-                Exam[][] JaggedMasiv = new Exam[nRows][];
-
-                for (int i = 0; i < nRows; i++)
-                {
-                    ++count;
-                    JaggedMasiv[i] = new Exam[count];
-                    for (int j = 0; j < count; j++)
-                    {
-                        JaggedMasiv[i][j] = new Exam();
-                    }
-                }
-             
-                start = Environment.TickCount;
-                for (int i = 0; i < JaggedMasiv.Length-1; i++)
-                {
-                   
-                    for (int j = 0; j < JaggedMasiv[i].Length; j++)
-                    {
-                        JaggedMasiv[i][j].Grade = 5;
-
-                    }
-
-                }
-                end = Environment.TickCount;
-                WriteLine($"Execution time for jagged masiv: {end - start} ms");
-               
+                WriteLine(obj);
             }
+            WriteLine("-----------------------------");
 
-            start = Environment.TickCount;
-            for (int i = 0; i < OneMasiv.Length; i++) OneMasiv[i].Grade = 5;
-            end = Environment.TickCount;
-            WriteLine($"Execution time for one dimension masiv: {end-start} ms");
 
-            start = Environment.TickCount;
-            for(int i = 0; i < TwoMasiv.Length; i++)
+            //7)
+            WriteLine("Name subjects which are peresent in tests and exams");
+            WriteLine("7)---------------------------");
+            foreach (var subject in student)
             {
-                for (int j = 0; j < TwoMasiv[i].Length; j++)
-                {
-                    TwoMasiv[i][j].Grade = 5;
-                }
+                WriteLine(subject);
             }
-            end = Environment.TickCount;
-            WriteLine($"Execution time for two dimension masiv: {end - start} ms");
-            WriteLine("---------------------------------------");
+            WriteLine("-----------------------------");
 
 
+            //8)
+            WriteLine("Passed exams and tests");
+            WriteLine("8)---------------------------");
+            foreach(object obj in student.PassedTestsAndExams())
+            {
+                WriteLine(obj);
+            }
+            WriteLine("-----------------------------");
+
+            //9)
+            WriteLine("Passed only tests");
+            WriteLine("9)---------------------------");
+            foreach(Test test in student.PassedOnlyTests())
+            {
+                WriteLine(test);
+            }
+            WriteLine("-----------------------------");
         }
-
     }
 }

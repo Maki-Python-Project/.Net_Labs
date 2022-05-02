@@ -28,3 +28,18 @@ C:\Users\maksd\OneDrive\Робочий стіл\lab_1\obj\Debug\net6.0\refint\la
 C:\Users\maksd\OneDrive\Робочий стіл\lab_1\obj\Debug\net6.0\lab1.pdb
 C:\Users\maksd\OneDrive\Робочий стіл\lab_1\obj\Debug\net6.0\lab1.genruntimeconfig.cache
 C:\Users\maksd\OneDrive\Робочий стіл\lab_1\obj\Debug\net6.0\ref\lab1.dll
+C:\Data\Education\3 курс\2 семестр\C#\lab2\bin\Debug\net6.0\lab1.exe
+C:\Data\Education\3 курс\2 семестр\C#\lab2\bin\Debug\net6.0\lab1.deps.json
+C:\Data\Education\3 курс\2 семестр\C#\lab2\bin\Debug\net6.0\lab1.runtimeconfig.json
+C:\Data\Education\3 курс\2 семестр\C#\lab2\bin\Debug\net6.0\lab1.dll
+C:\Data\Education\3 курс\2 семестр\C#\lab2\bin\Debug\net6.0\lab1.pdb
+C:\Data\Education\3 курс\2 семестр\C#\lab2\obj\Debug\net6.0\lab1.csproj.AssemblyReference.cache
+C:\Data\Education\3 курс\2 семестр\C#\lab2\obj\Debug\net6.0\lab1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Data\Education\3 курс\2 семестр\C#\lab2\obj\Debug\net6.0\lab1.AssemblyInfoInputs.cache
+C:\Data\Education\3 курс\2 семестр\C#\lab2\obj\Debug\net6.0\lab1.AssemblyInfo.cs
+C:\Data\Education\3 курс\2 семестр\C#\lab2\obj\Debug\net6.0\lab1.csproj.CoreCompileInputs.cache
+C:\Data\Education\3 курс\2 семестр\C#\lab2\obj\Debug\net6.0\lab1.dll
+C:\Data\Education\3 курс\2 семестр\C#\lab2\obj\Debug\net6.0\refint\lab1.dll
+C:\Data\Education\3 курс\2 семестр\C#\lab2\obj\Debug\net6.0\lab1.pdb
+C:\Data\Education\3 курс\2 семестр\C#\lab2\obj\Debug\net6.0\lab1.genruntimeconfig.cache
+C:\Data\Education\3 курс\2 семестр\C#\lab2\obj\Debug\net6.0\ref\lab1.dll

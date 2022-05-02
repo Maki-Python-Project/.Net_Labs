@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lab2
 {
-        enum Education
-        {
-            Master,
-            Bachelor,
-            SecondEducation
-        }
+    internal interface IDateAndCopy
+    {
+        object DeepCopy();
+        DateOnly Date { get; init; }
+    }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace lab1
+namespace Lab2
 {
-    internal class Exam
+    internal class Exam : IDateAndCopy
     {
         private string _nameSubject;
         private int _grade;
@@ -16,7 +16,7 @@ namespace lab1
         {
             get
             {
-               return _nameSubject;
+                return _nameSubject;
             }
 
             set
@@ -38,14 +38,20 @@ namespace lab1
             }
         }
 
-        public DateOnly DateExam
+
+        object IDateAndCopy.DeepCopy()
+        {
+            return MemberwiseClone();
+        }
+
+        public DateOnly Date
         {
             get
             {
                 return _dateExam;
             }
 
-            set
+            init
             {
                 _dateExam = value;
             }
@@ -53,17 +59,40 @@ namespace lab1
 
         public Exam(string nameSubject, int grade, DateOnly dateExam)
         {
+
             NameSubject = nameSubject;
             Grade = grade;
-            DateExam = dateExam;
+            Date = dateExam;
         }
 
-        public Exam():this(nameSubject: "3D modeling",grade:4,dateExam:new DateOnly(2021, 06, 14)) { }
+        public Exam() : this(nameSubject: "English", grade: 4, dateExam: new DateOnly(2021, 6, 29)) { }
 
         public override string ToString()
         {
-            return $"\nSubject: {NameSubject}\nGrade: {Grade} \nDate exam: {DateExam}\n";
+            return $"\nSubject: {NameSubject}\nGrade: {Grade} \nDate exam: {Date}\n";
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null) return false;
+            Exam exam = (Exam)obj;
+
+            return exam.NameSubject == NameSubject && exam.Grade == Grade && exam.Date == Date;
+        }
+
+        public static bool operator ==(Exam exam1, Exam exam2)
+        {
+            return exam1.Equals(exam2);
+        }
+
+        public static bool operator !=(Exam exam1, Exam exam2)
+        {
+            return !(exam1==exam2);
+        }
+
+        public override int GetHashCode()
+        {
+            return NameSubject.GetHashCode()*13 +Grade.GetHashCode()*17+Date.GetHashCode()*19;
         }
     }
-
 }
